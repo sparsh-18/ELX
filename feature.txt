@@ -1,0 +1,33 @@
+<script type="text/javascript">
+  var card_all = document.querySelectorAll('.add-card');
+  var arr = [];
+  card_all.forEach(function(item){
+    item.addEventListener('click',function(){
+       if(item.type == "uncheck"){
+         item.type = "check";
+         arr.push(item.id);
+         document.querySelectorAll('.image-'+item.id)[0].style.opacity = 0.45;
+         document.getElementById('span').innerText = arr.length;
+         document.getElementById('ids').value = arr;
+       }else{
+         item.type = "uncheck";
+         function find(n) {
+           return n>=item.id;
+         }
+         var index = arr.findIndex(find);
+         // here remove element ------ (update arr)
+         arr.splice(index,1);
+         document.querySelectorAll('.image-'+item.id)[0].style.opacity = 1;
+         document.getElementById('span').innerText = arr.length;
+         document.getElementById('ids').value = arr;
+       }
+
+    });
+  });
+</script>
+// category.ejs
+<div class="pi-links">
+    <a style="cursor:pointer;" type="uncheck" id="<%=pdata.id%>" class="add-card"><i style="color:black"  class="flaticon-bag"></i><span>ADD TO CART</span></a>
+    <!-- <a href="#" class="wishlist-btn"><i class="flaticon-heart"></i></a> -->
+    <!-- <input type="checkbox" name="" value=""> -->
+</div>
